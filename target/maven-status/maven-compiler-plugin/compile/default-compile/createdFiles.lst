@@ -1,0 +1,15 @@
+org\chad\vxlogin\mapper\UserWechatRouteMapper.class
+org\chad\vxlogin\service\UserService.class
+org\chad\vxlogin\mapper\UserMapper.class
+org\chad\vxlogin\domain\dto\WechatRequestDTO.class
+org\chad\vxlogin\domain\po\WechatUser.class
+org\chad\vxlogin\utils\WechatUtil.class
+org\chad\vxlogin\domain\entity\Account.class
+org\chad\vxlogin\domain\po\UserWechatRoute.class
+org\chad\vxlogin\domain\entity\Token.class
+META-INF\spring-configuration-metadata.json
+org\chad\vxlogin\controller\UserController.class
+org\chad\vxlogin\domain\po\User.class
+org\chad\vxlogin\service\impl\UserServiceImpl.class
+org\chad\vxlogin\VxLoginApp.class
+org\chad\vxlogin\utils\HttpUtil.class

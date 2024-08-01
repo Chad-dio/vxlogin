@@ -1,0 +1,15 @@
+server:
+  port: 80
+wechat:
+  app-id: wxbba59da171843ee4
+  app-secret: 55670f9a2bb46c3428b248c3cb761e06
+  domain: http://kk5j6m.natappfree.cc
+  redirect-uri: /user/wechatLogin
+spring:
+  application:
+    name: 08post
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://116.198.242.154:3306/posts?useSSL=false&serverTimezone=UTC
+    username: root
+    password: 'Chad@20021231'

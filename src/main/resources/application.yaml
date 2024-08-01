@@ -1,0 +1,15 @@
+server:
+  port: 80
+wechat:
+  app-id: xxx
+  app-secret: xxx
+  domain: http://xxx
+  redirect-uri: /user/wechatLogin
+spring:
+  application:
+    name: vxlogin
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://xxx:3306/posts?useSSL=false&serverTimezone=UTC
+    username: root
+    password: xxx
