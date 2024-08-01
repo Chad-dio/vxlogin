@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>微信扫码登录</title>
+    <!-- CDN方式引入vue3 -->
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <!-- CDN方式引入Axios -->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  </head>
+  <body>
+    <div id="app"><img :src="qrCode" /></div>    
+    <script>
+      //1.vue实例配置信息
+      const appConfig = {
+        data() {
+          return {
+            qrCode: "",
+          };
+        },
+        methods: {
+          //获取二维码的方法
+          getQrCode() {
+            let url = "http://127.0.0.1/user/getQRCode";		
+            axios.get(url).then(res=>{
+              this.qrCode = res.data;
+            })
+          },
+        },
+        created() {
+          //vue实例被创建之后，调用获取二维码的方法
+          this.getQrCode();
+        },
+      };
+      //2.创建vue实例
+      const app = Vue.createApp(appConfig);
+      //3.渲染视图(id=app)
+      app.mount("#app");
+    </script>
+  </body>
+</html>
