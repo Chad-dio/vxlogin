@@ -9,21 +9,23 @@
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   </head>
   <body>
-    <div id="app"><img :src="qrCode" /></div>    
+    <div id="app"><img :src="code" /></div>    
     <script>
       //1.vue实例配置信息
       const appConfig = {
         data() {
-          return {
-            qrCode: "",
-          };
+			return {
+				responseData: null,
+				code: '',
+			};
         },
         methods: {
           //获取二维码的方法
           getQrCode() {
             let url = "http://127.0.0.1/user/getQRCode";		
             axios.get(url).then(res=>{
-              this.qrCode = res.data;
+				this.responseData = res;
+				this.code = res.data.data.code; // 访问并存储code
             })
           },
         },
