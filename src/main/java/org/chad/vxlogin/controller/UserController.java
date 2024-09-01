@@ -9,6 +9,7 @@ import org.chad.vxlogin.domain.dto.WechatRequestDTO;
 import org.chad.vxlogin.domain.entity.Account;
 import org.chad.vxlogin.domain.entity.Result;
 import org.chad.vxlogin.domain.po.User;
+import org.chad.vxlogin.domain.vo.CodeVO;
 import org.chad.vxlogin.domain.vo.QRCodeVO;
 import org.chad.vxlogin.domain.vo.ScanVO;
 import org.chad.vxlogin.service.UserService;
@@ -16,6 +17,8 @@ import org.chad.vxlogin.utils.WechatUtil;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.NoSuchAlgorithmException;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 
 @RestController
@@ -58,8 +61,14 @@ public class UserController {
         return userService.wechatLogin(code, state, uuid);
     }
 
+    @PostMapping("/login")
+    public Result<CodeVO> login(@RequestParam String code){
+        return userService.wechatLoginPhone(code);
+    }
+
     @GetMapping("/qrLoginCallBack")
     public Result<ScanVO> qrLoginCallBack(@RequestParam String uuid){
-        return userService.getUser(uuid);
+        //uuid 取 redis 中的微信用户信息
+        return null;
     }
 }
