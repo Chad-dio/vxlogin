@@ -58,7 +58,7 @@ public class UserController {
         return userService.wechatLogin(code, state, uuid);
     }
 
-    @GetMapping("/qrLoginCallBack/")
+    @GetMapping("/qrLoginCallBack")
     public Result<ScanVO> qrLoginCallBack(@RequestParam String uuid){
         return userService.getUser(uuid);
     }

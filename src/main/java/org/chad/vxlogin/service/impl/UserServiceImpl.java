@@ -65,27 +65,8 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
                 entity_string = EntityUtils.toString(entity,"UTF-8");
                 WechatUser wechatUser = JSON.parseObject(entity_string, WechatUser.class);
                 System.out.println("当前扫码的微信用户是:\n" + wechatUser);
-                LambdaQueryWrapper<UserWechatRoute> wrapper = Wrappers.lambdaQuery(UserWechatRoute.class)
-                        .eq(UserWechatRoute::getVxId, wechatUser.getOpenid());
-                UserWechatRoute route = userWechatRouteMapper.selectOne(wrapper);
-                if(BeanUtil.isNotEmpty(route)){
-                    User user = baseMapper.selectById(route.getUserId());
-                    String jwt = JWTUtil.createToken(JSON.parseObject(JSON.toJSONString(user), Map.class), res.getBytes());
-                    stringRedisTemplate.opsForValue().set(uuid, jwt);
-                    stringRedisTemplate.expire(uuid, 30, TimeUnit.MINUTES);
-                    return Result.success("登录成功");
-                }
-                User user = new User();
-                user.setUsername(wechatUser.getNickname());
-                user.setPassword("123456");
-                save(user);
-                String jwt = JWTUtil.createToken(JSON.parseObject(JSON.toJSONString(user), Map.class), res.getBytes());
-                stringRedisTemplate.opsForValue().set(uuid, jwt);
+                stringRedisTemplate.opsForValue().set(uuid, wechatUser.getOpenid());
                 stringRedisTemplate.expire(uuid, 30, TimeUnit.MINUTES);
-                route = new UserWechatRoute();
-                route.setUserId(user.getId());
-                route.setVxId(wechatUser.getOpenid());
-                userWechatRouteMapper.insert(route);
             } catch (IOException e) {
                 return Result.error("失败");
             }
